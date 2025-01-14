@@ -15,10 +15,18 @@ public class Users {
     private String username;
     private String password;
 
-    public Users(int id, String username, String password) {
-        this.id = id;
+    public Users( String username, String password) {
         this.username = username;
         this.password = password;
+    }
+
+    @Override
+    public String toString() {
+        return "Users{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                '}';
     }
 
     public Users() {
