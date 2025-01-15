@@ -21,6 +21,10 @@ public class UserService {
     @Autowired
     AuthenticationManager authManager;
 
+    @Autowired
+    JWTservice JWTservice;
+
+
     public Users register(Users user) {
         //save karne ke pehele
         user.setPassword(encoder.encode(user.getPassword()));
@@ -33,7 +37,7 @@ public class UserService {
             Authentication authentication = authManager
                     .authenticate(new UsernamePasswordAuthenticationToken(user.getUsername(), user.getPassword()));
             if (authentication.isAuthenticated()) {
-                return "User Authenticated";
+                return JWTservice.generateJWTToken(user.getUsername());
             }
         } catch (Exception e) {
             return "User not Authenticated";
